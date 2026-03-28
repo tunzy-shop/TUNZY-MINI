@@ -1,0 +1,77 @@
+/**
+ * Set Bot Profile Picture Command
+ * Owner only - Changes bot's profile picture
+ * TUNZY MD MINI©
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { makeIsOwner } = require('../lib/isOwner');
+
+module.exports = async function setbotpic(sock, chatId, message, args) {
+    try {
+        const senderId = message.key.participant || message.key.remoteJid;
+        const isOwnerFn = makeIsOwner(sock._ownerPhone || '');
+        
+        if (!await isOwnerFn(senderId, sock, chatId) && !message.key.fromMe) {
+            await sock.sendMessage(chatId, {
+                text: '❌ *This command is only for the bot owner!*\n\n_TUNZY MD MINI©_'
+            }, { quoted: message });
+            return;
+        }
+
+        let imageBuffer = null;
+        const quotedMsg = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+        
+        if (quotedMsg?.imageMessage) {
+            const stream = await sock.downloadMediaMessage({
+                message: {
+                    message: {
+                        imageMessage: quotedMsg.imageMessage
+                    }
+                }
+            });
+            imageBuffer = stream;
+        } else if (message.message?.imageMessage) {
+            const stream = await sock.downloadMediaMessage(message);
+            imageBuffer = stream;
+        } else if (args[0] && (args[0].startsWith('http://') || args[0].startsWith('https://'))) {
+            const axios = require('axios');
+            try {
+                const response = await axios.get(args[0], { responseType: 'arraybuffer' });
+                imageBuffer = Buffer.from(response.data);
+            } catch (e) {
+                await sock.sendMessage(chatId, {
+                    text: '❌ *Failed to download image from URL!*\n\n_TUNZY MD MINI©_'
+                }, { quoted: message });
+                return;
+            }
+        }
+        
+        if (!imageBuffer) {
+            await sock.sendMessage(chatId, {
+                text: '❌ *Please reply to an image, send an image, or provide an image URL!*\n\n📌 *Usage:*\n```.setbotpic <reply to image>```\n```.setbotpic <image_url>```\n\n_TUNZY MD MINI©_'
+            }, { quoted: message });
+            return;
+        }
+
+        await sock.sendPresenceUpdate('composing', chatId);
+
+        try {
+            await sock.updateProfilePicture(sock.user.id, imageBuffer);
+            await sock.sendMessage(chatId, {
+                text: '✓ *Bot profile picture updated successfully!*\n\n_TUNZY MD MINI©_'
+            }, { quoted: message });
+        } catch (error) {
+            await sock.sendMessage(chatId, {
+                text: '❌ *Failed to update bot profile picture!*\n\n📌 *Error:* ' + error.message + '\n\n_TUNZY MD MINI©_'
+            }, { quoted: message });
+        }
+
+    } catch (error) {
+        console.error('Error in setbotpic command:', error);
+        await sock.sendMessage(chatId, {
+            text: '❌ *An error occurred while processing your request!*\n\n_TUNZY MD MINI©_'
+        }, { quoted: message });
+    }
+};
