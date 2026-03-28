@@ -117,7 +117,7 @@ app.post('/pair', async (req, res) => {
     if (!phone) return res.status(400).json({ error: 'Phone number is required.' });
     phone = phone.replace(/[^0-9]/g, '');
     if (phone.length < 7 || phone.length > 15)
-        return res.status(400).json({ error: 'Invalid number. Use international format e.g. 263788114185' });
+        return res.status(400).json({ error: 'Invalid number. Use international format e.g. 234XXXXXXXXXX' });
 
     const existing = activeBots.get(phone);
     if (existing?.status === 'connected')
@@ -244,7 +244,7 @@ async function startPairing(phone, timer) {
                 await delay(3000);
                 const botNum = sock.user.id.split(':')[0]+'@s.whatsapp.net';
                 await sock.sendMessage(botNum, {
-                    text: `🎉 *Welcome to TunzyMD!*\n\n✅ Your bot is now *LIVE!*\n\n*Try these:*\n• *.help* — all commands\n• *.ping* — check speed\n• *.ai hello* — AI chat\n• *.mode private* — private mode\n\n🌐 ${APP_URL}\n\n_TunzyMD©_`
+                    text: `🎉 *Welcome to TUNZY MD MINI!*\n\n✅ Your bot is now *LIVE!*\n\n*Try these:*\n• *.help* — all commands\n• *.ping* — check speed\n• *.ai hello* — AI chat\n• *.mode private* — private mode\n\n🌐 ${APP_URL}\n\n_TunzyMD©_`
                 });
             } catch {}
 
