@@ -1,7 +1,7 @@
 /**
- * Help Command - TunzyMD Menu
- * ✅ Displays all available commands with categories
- * ✅ TunzyMD© Signature
+ * Help Command - TUNZY MD MINI Menu
+ * Displays all available commands with categories
+ * TUNZY MD MINI©
  */
 
 const os = require('os');
@@ -14,8 +14,7 @@ module.exports = async function help(sock, chatId, message, args) {
         const sender = message.key.participant || message.key.remoteJid;
         const senderName = message.pushName || sender.split('@')[0];
         
-        // Get bot info
-        const botName = global.botName || 'TunzyMD';
+        const botName = global.botName || 'TUNZY MD MINI';
         const version = '1.0.0';
         const prefix = settings.prefix || '.';
         const platform = os.platform();
@@ -25,20 +24,17 @@ module.exports = async function help(sock, chatId, message, args) {
         const seconds = Math.floor(uptime % 60);
         const uptimeStr = `${hours}h ${minutes}m ${seconds}s`;
         
-        // Get owner name from config
         const ownerName = global.ownerName || 'Tunzy';
         
-        // Get plugin count
         const commandsDir = path.join(__dirname);
         let pluginCount = 0;
         try {
             const files = fs.readdirSync(commandsDir);
             pluginCount = files.filter(file => file.endsWith('.js')).length;
-        } catch(e) {
+        } catch (e) {
             pluginCount = '∞';
         }
         
-        // Menu header
         let menu = `╭═════ *${botName}* ═════⊷\n`;
         menu += `✓ \`\`\`Hello : ${senderName}\`\`\`\n`;
         menu += `✓ \`\`\`Owner : ${ownerName}\`\`\`\n`;
@@ -54,238 +50,208 @@ module.exports = async function help(sock, chatId, message, args) {
         menu += `┃✓ \`${prefix}fb\` \`${prefix}facebook\`\n`;
         menu += `┃✓ \`${prefix}gitclone\`\n`;
         menu += `┃✓ \`${prefix}instagram\` \`${prefix}ig\`\n`;
-        menu += `┃✓ \`${prefix}play\` \`${prefix}play2\`\n`;
-        menu += `┃✓ \`${prefix}tiktok\` \`${prefix}tiktokaudio\`\n`;
-        menu += `┃✓ \`${prefix}video\` \`${prefix}image\`\n`;
-        menu += `┃✓ \`${prefix}movie\`\n`;
-        menu += `┃✓ \`${prefix}song\` \`${prefix}song2\`\n`;
-        menu += `┃✓ \`${prefix}twitter\` \`${prefix}tw\`\n`;
-        menu += `┃✓ \`${prefix}pin\` \`${prefix}apk\`\n`;
+        menu += `┃✓ \`${prefix}play\`\n`;
+        menu += `┃✓ \`${prefix}tiktok\`\n`;
+        menu += `┃✓ \`${prefix}video\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // AI SECTION
         menu += `╭━━━━❮ *AI* ❯━⊷\n`;
         menu += `┃✓ \`${prefix}ai\` \`${prefix}ask\` \`${prefix}gpt\`\n`;
         menu += `┃✓ \`${prefix}deepseek\`\n`;
-        menu += `┃✓ \`${prefix}teach\`\n`;
-        menu += `┃✓ \`${prefix}translate2\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // SETTINGS SECTION
         menu += `╭━━━━❮ *SETTINGS* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}anticall\` \`${prefix}anti-call\`\n`;
+        menu += `┃✓ \`${prefix}anti-call\` \`${prefix}anticall\`\n`;
         menu += `┃✓ \`${prefix}antilink\`\n`;
-        menu += `┃✓ \`${prefix}autorecording\`\n`;
-        menu += `┃✓ \`${prefix}autoreply\` \`${prefix}ar\`\n`;
-        menu += `┃✓ \`${prefix}autoseen\` \`${prefix}auto-seen\`\n`;
-        menu += `┃✓ \`${prefix}autotyping\`\n`;
+        menu += `┃✓ \`${prefix}auto-recording\` \`${prefix}autorecording\`\n`;
+        menu += `┃✓ \`${prefix}auto-reply\` \`${prefix}autoreply\`\n`;
+        menu += `┃✓ \`${prefix}auto-seen\` \`${prefix}autoseen\`\n`;
+        menu += `┃✓ \`${prefix}auto-typing\` \`${prefix}autotyping\`\n`;
         menu += `┃✓ \`${prefix}autoreact\`\n`;
         menu += `┃✓ \`${prefix}afk\`\n`;
-        menu += `┃✓ \`${prefix}readmessage\` \`${prefix}read-message\`\n`;
+        menu += `┃✓ \`${prefix}read-message\` \`${prefix}readmessage\`\n`;
         menu += `┃✓ \`${prefix}resetwarn\`\n`;
-        menu += `┃✓ \`${prefix}setprefix\`\n`;
-        menu += `┃✓ \`${prefix}statusreact\`\n`;
-        menu += `┃✓ \`${prefix}statusreply\`\n`;
-        menu += `┃✓ \`${prefix}welcome\` \`${prefix}goodbye\`\n`;
+        menu += `┃✓ \`${prefix}setbotprefix\`\n`;
+        menu += `┃✓ \`${prefix}setbotpic\`\n`;
+        menu += `┃✓ \`${prefix}setbotname\`\n`;
+        menu += `┃✓ \`${prefix}status-react\` \`${prefix}statusreact\`\n`;
+        menu += `┃✓ \`${prefix}status-reply\` \`${prefix}statusreply\`\n`;
+        menu += `┃✓ \`${prefix}welcome\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // OWNER SECTION
         menu += `╭━━━━❮ *OWNER* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}bc\` \`${prefix}broadcast\`\n`;
+        menu += `┃✓ \`${prefix}broadcast\` \`${prefix}bc\`\n`;
         menu += `┃✓ \`${prefix}vcf\`\n`;
-        menu += `┃✓ \`${prefix}setsudo\` \`${prefix}delsudo\`\n`;
+        menu += `┃✓ \`${prefix}sudo\` \`${prefix}setsudo\`\n`;
+        menu += `┃✓ \`${prefix}del\` \`${prefix}delsudo\`\n`;
         menu += `┃✓ \`${prefix}forward\`\n`;
         menu += `┃✓ \`${prefix}getpp\`\n`;
-        menu += `┃✓ \`${prefix}leave\` \`${prefix}join\`\n`;
-        menu += `┃✓ \`${prefix}setpp\` \`${prefix}setbotimage\`\n`;
+        menu += `┃✓ \`${prefix}leave\`\n`;
+        menu += `┃✓ \`${prefix}setpp\` \`${prefix}setprofilepic\`\n`;
         menu += `┃✓ \`${prefix}mode\`\n`;
         menu += `┃✓ \`${prefix}update\`\n`;
-        menu += `┃✓ \`${prefix}restart\` \`${prefix}shutdown\`\n`;
-        menu += `┃✓ \`${prefix}block\` \`${prefix}unblock\`\n`;
-        menu += `┃✓ \`${prefix}setbio\` \`${prefix}setbotname\`\n`;
-        menu += `┃✓ \`${prefix}react\` \`${prefix}online\`\n`;
-        menu += `┃✓ \`${prefix}tostatus\` \`${prefix}toviewonce\`\n`;
-        menu += `┃✓ \`${prefix}groupid\` \`${prefix}disk\`\n`;
-        menu += `┃✓ \`${prefix}autosavestatus\`\n`;
-        menu += `┃✓ \`${prefix}lastseen\` \`${prefix}freezelastseen\`\n`;
-        menu += `┃✓ \`${prefix}unblockall\` \`${prefix}vv2\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // TOOLS SECTION
         menu += `╭━━━━❮ *TOOLS* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}fancy\` \`${prefix}fliptext\`\n`;
-        menu += `┃✓ \`${prefix}hd\` \`${prefix}remini\`\n`;
-        menu += `┃✓ \`${prefix}quoted\` \`${prefix}say\`\n`;
+        menu += `┃✓ \`${prefix}fancy\`\n`;
+        menu += `┃✓ \`${prefix}hd\`\n`;
+        menu += `┃✓ \`${prefix}quoted\`\n`;
         menu += `┃✓ \`${prefix}savecontact\`\n`;
         menu += `┃✓ \`${prefix}shazam\`\n`;
         menu += `┃✓ \`${prefix}tiktoksearch\`\n`;
         menu += `┃✓ \`${prefix}vv\` \`${prefix}viewonce\`\n`;
         menu += `┃✓ \`${prefix}removebg\`\n`;
-        menu += `┃✓ \`${prefix}tinyurl\` \`${prefix}ssweb\`\n`;
-        menu += `┃✓ \`${prefix}getabout\` \`${prefix}browse\`\n`;
-        menu += `┃✓ \`${prefix}texttopdf\` \`${prefix}genpass\`\n`;
-        menu += `┃✓ \`${prefix}tourl\` \`${prefix}wallpaper\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // GROUP SECTION
         menu += `╭━━━━❮ *GROUP* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}group\` \`${prefix}leavegroup\`\n`;
-        menu += `┃✓ \`${prefix}add\` \`${prefix}kick\`\n`;
-        menu += `┃✓ \`${prefix}promote\` \`${prefix}demote\`\n`;
-        menu += `┃✓ \`${prefix}tagall\` \`${prefix}tag\` \`${prefix}hidetag\`\n`;
-        menu += `┃✓ \`${prefix}mute\` \`${prefix}unmute\`\n`;
-        menu += `┃✓ \`${prefix}lock\` \`${prefix}unlock\`\n`;
-        menu += `┃✓ \`${prefix}setname\` \`${prefix}setdesc\`\n`;
-        menu += `┃✓ \`${prefix}getlink\` \`${prefix}resetlink\`\n`;
-        menu += `┃✓ \`${prefix}announce\` \`${prefix}invite\`\n`;
-        menu += `┃✓ \`${prefix}open\` \`${prefix}close\`\n`;
-        menu += `┃✓ \`${prefix}groupinfo\` \`${prefix}admins\`\n`;
-        menu += `┃✓ \`${prefix}topmembers\` \`${prefix}totalmembers\`\n`;
-        menu += `┃✓ \`${prefix}kickinactive\` \`${prefix}vcf\`\n`;
+        menu += `┃✓ \`${prefix}vcf\`\n`;
+        menu += `┃✓ \`${prefix}leave\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // UTILITY SECTION
         menu += `╭━━━━❮ *UTILITY* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}jid\` \`${prefix}userid\`\n`;
+        menu += `┃✓ \`${prefix}jid\`\n`;
         menu += `┃✓ \`${prefix}repo\`\n`;
         menu += `┃✓ \`${prefix}screenshot\` \`${prefix}ssweb\`\n`;
-        menu += `┃✓ \`${prefix}time\` \`${prefix}weather\`\n`;
-        menu += `┃✓ \`${prefix}calc\` \`${prefix}math\`\n`;
-        menu += `┃✓ \`${prefix}qr\` \`${prefix}qrcode\`\n`;
-        menu += `┃✓ \`${prefix}country\` \`${prefix}currency\`\n`;
-        menu += `┃✓ \`${prefix}github\` \`${prefix}gh\`\n`;
-        menu += `┃✓ \`${prefix}encode\` \`${prefix}decode\`\n`;
-        menu += `┃✓ \`${prefix}reverse\` \`${prefix}upper\` \`${prefix}lower\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // MAIN SECTION
         menu += `╭━━━━❮ *MAIN* ❯━⊷\n`;
         menu += `┃✓ \`${prefix}alive\`\n`;
-        menu += `┃✓ \`${prefix}ping\` \`${prefix}ping2\`\n`;
-        menu += `┃✓ \`${prefix}uptime\` \`${prefix}runtime\`\n`;
-        menu += `┃✓ \`${prefix}owner\` \`${prefix}pair\`\n`;
-        menu += `┃✓ \`${prefix}help\` \`${prefix}menu\` \`${prefix}list\`\n`;
-        menu += `┃✓ \`${prefix}botstatus\` \`${prefix}repo\`\n`;
+        menu += `┃✓ \`${prefix}ping\`\n`;
+        menu += `┃✓ \`${prefix}uptime\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // ADMIN SECTION
         menu += `╭━━━━❮ *ADMIN* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}demote\` \`${prefix}promote\`\n`;
-        menu += `┃✓ \`${prefix}mute-user\` \`${prefix}unmute-user\`\n`;
-        menu += `┃✓ \`${prefix}kick\` \`${prefix}kickall\`\n`;
-        menu += `┃✓ \`${prefix}tagall\` \`${prefix}tag\`\n`;
-        menu += `┃✓ \`${prefix}mute\` \`${prefix}unmute\`\n`;
-        menu += `┃✓ \`${prefix}add\` \`${prefix}del\`\n`;
-        menu += `┃✓ \`${prefix}acceptall\` \`${prefix}rejectall\`\n`;
-        menu += `┃✓ \`${prefix}antilink\` \`${prefix}antibadword\`\n`;
-        menu += `┃✓ \`${prefix}welcome\` \`${prefix}goodbye\`\n`;
-        menu += `┃✓ \`${prefix}setgpp\` \`${prefix}setgname\`\n`;
-        menu += `┃✓ \`${prefix}warn\` \`${prefix}clearwarn\` \`${prefix}warnings\`\n`;
+        menu += `┃✓ \`${prefix}demote\`\n`;
+        menu += `┃✓ \`${prefix}mute-user\`\n`;
+        menu += `┃✓ \`${prefix}unmute-user\`\n`;
+        menu += `┃✓ \`${prefix}promote\`\n`;
+        menu += `┃✓ \`${prefix}kick\`\n`;
+        menu += `┃✓ \`${prefix}tagall\`\n`;
+        menu += `┃✓ \`${prefix}tag\`\n`;
+        menu += `┃✓ \`${prefix}mute\`\n`;
+        menu += `┃✓ \`${prefix}unmute\`\n`;
+        menu += `┃✓ \`${prefix}add\`\n`;
+        menu += `┃✓ \`${prefix}acceptall\`\n`;
+        menu += `┃✓ \`${prefix}rejectall\`\n`;
+        menu += `┃✓ \`${prefix}antilink\`\n`;
+        menu += `┃✓ \`${prefix}welcome\`\n`;
+        menu += `┃✓ \`${prefix}goodbye\`\n`;
+        menu += `┃✓ \`${prefix}setgpp\`\n`;
+        menu += `┃✓ \`${prefix}setgname\`\n`;
+        menu += `┃✓ \`${prefix}warn\`\n`;
+        menu += `┃✓ \`${prefix}del\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // ANIME SECTION
         menu += `╭━━━━❮ *ANIME* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}bite\` \`${prefix}blush\` \`${prefix}bonk\`\n`;
-        menu += `┃✓ \`${prefix}bully\` \`${prefix}cringe\` \`${prefix}cry\`\n`;
-        menu += `┃✓ \`${prefix}cuddle\` \`${prefix}dance\` \`${prefix}dog\`\n`;
-        menu += `┃✓ \`${prefix}handhold\` \`${prefix}highfive\`\n`;
-        menu += `┃✓ \`${prefix}hug\` \`${prefix}kill\` \`${prefix}kiss\`\n`;
-        menu += `┃✓ \`${prefix}lick\` \`${prefix}nom\` \`${prefix}pat\`\n`;
-        menu += `┃✓ \`${prefix}poke\` \`${prefix}slap\` \`${prefix}wave\`\n`;
-        menu += `┃✓ \`${prefix}wink\` \`${prefix}insult\`\n`;
+        menu += `┃✓ \`${prefix}awoo\`\n`;
+        menu += `┃✓ \`${prefix}bite\`\n`;
+        menu += `┃✓ \`${prefix}blush\`\n`;
+        menu += `┃✓ \`${prefix}bonk\`\n`;
+        menu += `┃✓ \`${prefix}bully\`\n`;
+        menu += `┃✓ \`${prefix}cringe\`\n`;
+        menu += `┃✓ \`${prefix}cry\`\n`;
+        menu += `┃✓ \`${prefix}cuddle\`\n`;
+        menu += `┃✓ \`${prefix}dance\`\n`;
+        menu += `┃✓ \`${prefix}dog\`\n`;
+        menu += `┃✓ \`${prefix}glomp\`\n`;
+        menu += `┃✓ \`${prefix}hack\`\n`;
+        menu += `┃✓ \`${prefix}handhold\`\n`;
+        menu += `┃✓ \`${prefix}highfive\`\n`;
+        menu += `┃✓ \`${prefix}hug\`\n`;
+        menu += `┃✓ \`${prefix}img\`\n`;
+        menu += `┃✓ \`${prefix}insult\`\n`;
+        menu += `┃✓ \`${prefix}kill\`\n`;
+        menu += `┃✓ \`${prefix}kiss\`\n`;
+        menu += `┃✓ \`${prefix}lick\`\n`;
+        menu += `┃✓ \`${prefix}nom\`\n`;
+        menu += `┃✓ \`${prefix}pat\`\n`;
+        menu += `┃✓ \`${prefix}poke\`\n`;
+        menu += `┃✓ \`${prefix}slap\`\n`;
+        menu += `┃✓ \`${prefix}wave\`\n`;
+        menu += `┃✓ \`${prefix}wink\`\n`;
+        menu += `┃✓ \`${prefix}yeet\`\n`;
+        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
+        
+        // MENU SECTION
+        menu += `╭━━━━❮ *MENU* ❯━⊷\n`;
+        menu += `┃✓ \`${prefix}help\` \`${prefix}menu\`\n`;
+        menu += `┃✓ \`${prefix}list\`\n`;
+        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
+        
+        // MISC SECTION
+        menu += `╭━━━━❮ *MISC* ❯━⊷\n`;
+        menu += `┃✓ \`${prefix}lyrics\` \`${prefix}lyric\`\n`;
+        menu += `┃✓ \`${prefix}play\`\n`;
+        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
+        
+        // DOWNLOAD SECTION
+        menu += `╭━━━━❮ *DOWNLOAD* ❯━⊷\n`;
+        menu += `┃✓ \`${prefix}movie\`\n`;
+        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
+        
+        // PRIVACY SECTION
+        menu += `╭━━━━❮ *PRIVACY* ❯━⊷\n`;
+        menu += `┃✓ \`${prefix}blocklist\`\n`;
+        menu += `┃✓ \`${prefix}getbio\`\n`;
+        menu += `┃✓ \`${prefix}getprivacy\`\n`;
+        menu += `┃✓ \`${prefix}groupsprivacy\`\n`;
+        menu += `┃✓ \`${prefix}privacy\`\n`;
+        menu += `┃✓ \`${prefix}setmyname\`\n`;
+        menu += `┃✓ \`${prefix}setonline\`\n`;
+        menu += `┃✓ \`${prefix}setpp\`\n`;
+        menu += `┃✓ \`${prefix}setppall\`\n`;
+        menu += `┃✓ \`${prefix}updatebio\`\n`;
+        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
+        
+        // INFO SECTION
+        menu += `╭━━━━❮ *INFO* ❯━⊷\n`;
+        menu += `┃✓ \`${prefix}savestatus\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // STICKER SECTION
         menu += `╭━━━━❮ *STICKER* ❯━⊷\n`;
         menu += `┃✓ \`${prefix}sticker\` \`${prefix}s\`\n`;
-        menu += `┃✓ \`${prefix}take\` \`${prefix}steal\`\n`;
-        menu += `┃✓ \`${prefix}vsticker\` \`${prefix}toimg\`\n`;
-        menu += `┃✓ \`${prefix}emojimix\`\n`;
+        menu += `┃✓ \`${prefix}take\`\n`;
+        menu += `┃✓ \`${prefix}vsticker\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // GAME SECTION
         menu += `╭━━━━❮ *GAME* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}ttt\` \`${prefix}tttstop\`\n`;
-        menu += `┃✓ \`${prefix}tod\` \`${prefix}todstop\`\n`;
-        menu += `┃✓ \`${prefix}trivia\` \`${prefix}truthdetector\`\n`;
-        menu += `┃✓ \`${prefix}8ball\` \`${prefix}flip\` \`${prefix}dice\`\n`;
-        menu += `┃✓ \`${prefix}choose\` \`${prefix}ship\` \`${prefix}love\`\n`;
-        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
-        
-        // FUN SECTION
-        menu += `╭━━━━❮ *FUN* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}joke\` \`${prefix}dadjoke\` \`${prefix}fact\`\n`;
-        menu += `┃✓ \`${prefix}quote\` \`${prefix}motivate\` \`${prefix}roast\`\n`;
-        menu += `┃✓ \`${prefix}compliment\` \`${prefix}insult\`\n`;
-        menu += `┃✓ \`${prefix}truth\` \`${prefix}dare\` \`${prefix}rate\`\n`;
-        menu += `┃✓ \`${prefix}zodiac\` \`${prefix}horoscope\`\n`;
-        menu += `┃✓ \`${prefix}age\` \`${prefix}today\`\n`;
-        menu += `┃✓ \`${prefix}memes\` \`${prefix}xxqc\`\n`;
-        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
-        
-        // AUDIO SECTION
-        menu += `╭━━━━❮ *AUDIO* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}tomp3\` \`${prefix}toaudio\`\n`;
-        menu += `┃✓ \`${prefix}tovideo\` \`${prefix}toptt\`\n`;
-        menu += `┃✓ \`${prefix}bass\` \`${prefix}robot\` \`${prefix}earrape\`\n`;
-        menu += `┃✓ \`${prefix}deep\` \`${prefix}blown\`\n`;
-        menu += `┃✓ \`${prefix}volaudio\` \`${prefix}volvideo\`\n`;
-        menu += `┃✓ \`${prefix}tts\` \`${prefix}lyrics\`\n`;
-        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
-        
-        // MISC SECTION
-        menu += `╭━━━━❮ *MISC* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}notes\` \`${prefix}remind\`\n`;
-        menu += `┃✓ \`${prefix}poll\` \`${prefix}count\`\n`;
-        menu += `┃✓ \`${prefix}profile\` \`${prefix}getdp\`\n`;
-        menu += `┃✓ \`${prefix}savestatus\` \`${prefix}deviceinfo\`\n`;
-        menu += `┃✓ \`${prefix}define\` \`${prefix}urban\` \`${prefix}wiki\`\n`;
-        menu += `┃✓ \`${prefix}news\` \`${prefix}translate\`\n`;
-        menu += `┃✓ \`${prefix}imdb\` \`${prefix}yts\` \`${prefix}shazam\`\n`;
-        menu += `┃✓ \`${prefix}bible\` \`${prefix}quran\`\n`;
-        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
-        
-        // PRIVACY SECTION
-        menu += `╭━━━━❮ *PRIVACY* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}blocklist\` \`${prefix}getbio\`\n`;
-        menu += `┃✓ \`${prefix}getprivacy\` \`${prefix}groupsprivacy\`\n`;
-        menu += `┃✓ \`${prefix}privacy\` \`${prefix}setmyname\`\n`;
-        menu += `┃✓ \`${prefix}setonline\` \`${prefix}setppall\`\n`;
-        menu += `┃✓ \`${prefix}updatebio\` \`${prefix}readreceipts\`\n`;
-        menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
-        
-        // INFO SECTION
-        menu += `╭━━━━❮ *INFO* ❯━⊷\n`;
-        menu += `┃✓ \`${prefix}savestatus\` \`${prefix}status\`\n`;
-        menu += `┃✓ \`${prefix}runtime\` \`${prefix}botstatus\`\n`;
+        menu += `┃✓ \`${prefix}ttt\`\n`;
+        menu += `┃✓ \`${prefix}tttstop\`\n`;
+        menu += `┃✓ \`${prefix}tod\`\n`;
+        menu += `┃✓ \`${prefix}todstop\`\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n\n`;
         
         // FOOTER
         menu += `╭━━━━❮ *TIPS* ❯━⊷\n`;
         menu += `┃✓ *Total Commands:* ${pluginCount}+\n`;
         menu += `┃✓ *Use:* \`${prefix}help <command>\` for details\n`;
-        menu += `┃✓ *Powered by:* TunzyMD©\n`;
+        menu += `┃✓ *Powered by:* TUNZY MD MINI©\n`;
         menu += `╰━━━━━━━━━━━━━━━━━⊷\n`;
         
-        // Send menu
         await sock.sendMessage(chatId, {
             text: menu,
             contextInfo: {
                 mentionedJid: [sender],
                 forwardingScore: 999,
-                isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363304450573890@newsletter',
-                    newsletterName: 'TunzyMD',
-                    serverMessageId: 1
-                }
+                isForwarded: true
             }
         }, { quoted: message });
         
     } catch (error) {
         console.error('Error in help command:', error);
         await sock.sendMessage(chatId, {
-            text: `❌ *Error displaying menu!*\n\n📌 *Error:* ${error.message}\n\n_TunzyMD©_`
+            text: `❌ *Error displaying menu!*\n\n📌 *Error:* ${error.message}\n\n_TUNZY MD MINI©_`
         }, { quoted: message });
     }
 };
